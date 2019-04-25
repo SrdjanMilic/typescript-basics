@@ -2,7 +2,7 @@
 
 Web site with basic TypeScript code examples.  
 
-Note: The site code is dynamic, so you can use main.ts script for your own practice.  
+Note: The results from code blocks examples are dynamic and generated from compiled main.ts file.  
 
 Site instance:  
 <http://188.166.11.99/typescript-basics/dist>
