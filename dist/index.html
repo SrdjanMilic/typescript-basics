@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/highlight/styles/routeros.css">
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+  <title>TypeScript Basics</title>
+</head>
+
+<body>
+  <main>
+    <h1 id="title"></h1>
+    <br>
+
+    <p>
+      This page is about TypeScript programming basics.
+      <br>
+      Results value lists of calling the code are generated dynamically, which means that all the code provided are
+      function properly for sure.
+      <br>
+      More or less, the only difference is "console.log" statements in the code snippets vs "innerHTML" method at source
+      code.
+      <br>
+      Be free to look up the source code at <a href="https://gitlab.com/srdjanrmilic/typescript-basics">GitHub page.</a>
+    </p>
+    <br>
+
+    <h2>Content:</h2>
+    <div id="content-container">
+      <div>1.<a href="#variables-title"> Variables and data types</a></div>
+      <div>1.1<a href="#convert-title"> Converting string variables to number and vise versa</a></div>
+      <div>1.2<a href="#multi-types-title"> Multi type variables</a></div>
+      <br>
+      <div>2.<a href="#arrays-title"> Arrays</a></div>
+      <div>2.1<a href="#tuple-title"> Tuple arrays (arrays with multiple types)</a></div>
+      <div>2.2<a href="#enum-title"> Enum</a></div>
+      <br>
+      <div>3.<a href="#math-title"> Math</a></div>
+      <br>
+      <div>4.<a href="#looping-title"> Looping</a></div>
+      <br>
+      <div>5.<a href="#functions-title"> Functions</a></div>
+      <div>5.1<a href="#arrow-functions-title"> Arrow function</a></div>
+      <div>5.2<a href="#generic-functions-title"> Generic functions with data type markers</a></div>
+      <div>5.3<a href="#spread-title"> Spread operator</a></div>
+      <br>
+      <div>6.<a href="#interfaces-title"> Interfaces</a></div>
+      <br>
+      <div>7.<a href="#classes-title"> Classes</a></div>
+      <div>7.1<a href="#class-inheritance-title"> Class inheritance (subclasses)</a></div>
+      <div>7.2<a href="#class-interface-title"> Class interface example</a></div>
+      <div>7.2.1<a href="#data-type-title"> Example with data type markers</a></div>
+      <div>7.3<a href="#generic-classes-title"> Generic classes</a></div>
+      <br>
+      <div>8.<a href="#destructuring-title"> Destructuring (multiple values in one line)</a></div>
+      <div>8.1<a href="#switch-title"> Switch values</a></div>
+    </div>
+    <br>
+
+    <h3 id="variables-title">1. Variables and data types</h3>
+    <pre><code>
+      const title: string = "TypeScript Basics";
+      const myAge: number = 43;
+      const canVote: boolean = true;
+      let anything: any = "dog";
+      anything = 2;
+
+      console.log(`const title is a ${typeof (title)}`);
+      console.log(`const myAge is a ${typeof (myAge)}`);
+      console.log(`const canVote is a ${typeof (canVote)}`);
+      console.log(`let anything is a ${typeof (anything)}`);
+    </code></pre>
+    <p id="variables"></p>
+    <br>
+
+    <h3 id="convert-title">1.1 Converting string variables to number and vise versa</h3>
+    <pre><code>
+      let strToNum: number = parseInt("5");
+      let numToStr: number = 5;
+
+      console.log(`strToNum is a ${typeof (strToNum)}`);
+      console.log(`numToStr is a ${typeof (numToStr.toString())}`);
+    </code></pre>
+    <p id="convert"></p>
+    <br>
+
+    <h3 id="multi-types-title">1.2 Multi type variables</h3>
+    <pre><code>
+      let multiType: number | boolean; // either variable calls are ok
+      multiType = 20;
+      multiType = true;
+
+      console.log(multiType);
+    </code></pre>
+    <p id="multi-types"></p>
+    <br>
+
+    <h3 id="arrays-title">2. Arrays</h3>
+    <pre><code>
+      let employees1: string[] = ["Bob", "Sally", "Sam"]; // One way of array declaration
+      let employees2: Array<string> = ["John", "Harry", "Ava"]; // Another way of array declaration
+
+      console.log(employees1);
+      console.log(employees2);
+    </code></pre>
+    <p id="arrays1"></p>
+    <p id="arrays2"></p>
+    <br>
+
+    <h3 id="tuple-title">2.1 Tuple arrays (arrays with multiple types)</h3>
+    <pre><code>
+      let employees3: [string, number] = ["Megan", 8];
+
+      console.log(employees3);
+    </code></pre>
+    <p id="tuple-arrays"></p>
+    <br>
+    <h3 id="enum-title">2.2 Enum</h3>
+    <pre><code>
+      enum Color { Red = 5, Green, Blue }
+      let c: Color = Color.Green; // will print the index value of Green color, which is 6 in this case
+
+      console.log(c);
+    </code></pre>
+    <p id="enum"></p>
+    <br>
+
+    <h3 id="math-title">3. Math</h3>
+    <pre><code>
+      let addition = 5 + 4;
+      let subtraction = 5 - 4;
+      let multiplication = 5 * 4;
+      let division = 5 / 4;
+      let modulo = 5 % 4;
+
+      console.log(addition);
+      console.log(subtraction);
+      console.log(multiplication);
+      console.log(division);
+      console.log(modulo);
+    </code></pre>
+    <p id="math"></p>
+    <br>
+
+    <h3 id="looping-title">4. Looping</h3>
+    <pre><code class="plaintext">
+      let randArray = [1, "john", false];
+
+      for (let i in randArray) { // "in" will print array indexes
+        ...
+      }
+      for (let i of randArray) { // "of" will print array values
+        ...
+      }
+
+      console.log(randArray);
+    </code></pre>
+    <ul>
+      <li id="loop1"></li>
+    </ul>
+    <ul>
+      <li id="loop2"></li>
+    </ul>
+    <br>
+
+    <h3 id="functions-title">5. Functions</h3>
+    <pre><code>
+      let getSum = function (num1: number, num2: number): number {
+        return num1 + num2;
+      }
+      
+      let theSum1: number = getSum(5, 2);
+      
+      let getDiff = function (num1: number, num2 = 2, num3?: number): number { // num3 parameter is optional
+        if (typeof num3 !== "undefined") {
+          return num1 - num2 - num3;
+        }
+        return num1 - num2;
+      }
+
+      console.log(theSum1);
+      console.log(getDiff(5)); // Number value "2" is already defined in the function as num2 parameter!
+      console.log(getDiff(5, 2, 3));
+    </code></pre>
+    <ul id="functions"></ul>
+    <br>
+
+    <h3 id="arrow-functions-title">5.1 Arrow function</h3>
+    <pre><code>
+      let addOne = (n: number): number => n + 1;
+
+      console.log(addOne(8));
+    </code></pre>
+    <ul id="arrow-functions"></ul>
+    <br>
+
+    <h3 id="generic-functions-title">5.2 Generic functions with data type markers</h3>
+    <pre><code>
+      function GetTypeOf<T>(value: T): string {
+        return typeof (value);
+      }
+        
+      let aString = "A string";
+      let aNumber = 10;
+
+      console.log(GetTypeOf(aString));
+      console.log(GetTypeOf(aNumber));
+    </code></pre>
+    <ul id="generic-functions"></ul>
+    <br>
+
+    <h3 id="spread-title">5.3 Spread operator</h3>
+    <pre><code>
+      // Typed spread operator works only when all parameters are marked as optional
+      function theSum(x?: number, y?: number, z?: number): number {
+        return x + y + z;
+      }
+
+      let args = [4, 5, 6];
+
+      console.log(`Sum: ${theSum(...args)}`);
+    </code></pre>
+    <ul id="spread-operator"></ul>
+    <br>
+
+    <h3 id="interfaces-title">6. Interfaces</h3>
+    <pre><code>
+      interface SuperHero {
+        realName: String;
+        superName: String;
+      }
+
+      let superman: SuperHero = {
+        realName: "Clark Kent",
+        superName: "Superman"
+      }
+
+      let superHeroes: SuperHero[] = [];
+
+      superHeroes.push({
+        realName: "Bruce Wayne",
+        superName: "Batman"
+      });
+
+      console.log(`${superman.realName} is ${superman.superName}`);
+      console.log(`${superHeroes[0].realName} is ${superHeroes[0].superName}`);
+    </code></pre>
+    <ul id="interfaces"></ul>
+    <br>
+
+    <h3 id="classes-title">7. Classes</h3>
+    <pre><code>
+      class Animal {
+        public favFood: string;
+        static numOfAnimals: number = 0;
+
+        constructor(private name: string, private owner: string) {
+          Animal.numOfAnimals++;
+        }
+
+        ownerInfo() {
+          console.log(`${this.name} is owned by ${this.owner}`)
+        }
+
+        static howManyAnimals(): number {
+          return Animal.numOfAnimals;
+        }
+
+        private _weight: number;
+
+        get weight(): number {
+          return this._weight;
+        }
+
+        set weight(weight: number) {
+          this._weight = weight;
+        }
+      }
+
+      let spot = new Animal("Spot", "Doug");
+
+      spot.ownerInfo();
+      spot.weight = 100;
+
+      console.log(`Spot's weight is ${spot.weight}`)
+      console.log(`Number of Animals: ${Animal.howManyAnimals()}`)
+    </code></pre>
+    <ul>
+      <li id="owner-info"></li>
+      <li id="animals-weight"></li>
+      <li id="animals-number"></li>
+    </ul>
+    <br>
+
+    <h3 id="class-inheritance-title">7.1 Class inheritance (subclasses)</h3>
+    <pre><code>
+      class Dog extends Animal {
+        constructor(name: string, owner: string) {
+          super(name, owner);
+          Dog.numOfAnimals++
+        }
+      }
+
+      let grover = new Dog("Grover", "Jimmy");
+
+      console.log(`Is a Dog an Animal: ${grover instanceof Animal}`);
+      console.log(`Does Grover have a name: ${"name" in grover}`);
+      console.log(`Does Grover have an owner: ${"owner" in grover}`);
+      console.log(`Number of Animals is now: ${Animal.howManyAnimals()}`);
+    </code></pre>
+    <ul id="class-inheritance"></ul>
+    <br>
+
+    <h3 id="class-interface-title">7.2 Class interface example</h3>
+    <pre><code>
+      interface Vehicle {
+        drive(): any;
+      }
+
+      class Car implements Vehicle {
+        constructor(private wheels: number) { }
+        drive(): void {
+          let carWheels = document.querySelector(".car");
+          carWheels.innerText = `The car drives with ${this.wheels} wheels`;
+          
+          let carWheels2 = document.querySelector(".car2");
+          carWheels2.innerText = `The car drives with ${this.wheels} wheels`;
+        }
+      }
+          
+      class Bicycle implements Vehicle {
+        constructor(private wheels: number) { }
+        drive(): void {
+          let bicycleWheels = document.querySelector(".bicycle");
+          bicycleWheels.innerText = `The car drives with ${this.wheels} wheels`;
+
+          let bicycleWheels2 = document.querySelector(".bicycle2");
+          bicycleWheels2.innerText = `The car drives with ${this.wheels} wheels`;
+        }
+      }
+
+      // Please notice:
+      // There is "HTMLElement tag with angle brackets" before all "document.querySelector()" statements.
+      // Code highligh library omit that tag from some reasons. You can look at source code for exact syntax.
+          
+      let car = new Car(4);
+      let bike = new Bicycle(2);
+
+      car.drive();
+      bike.drive();
+    </code></pre>
+    <ul>
+      <li class="car"></li>
+      <li class="bicycle"></li>
+    </ul>
+    <br>
+
+    <h3 id="data-type-title">7.2.1 Example with data type markers</h3>
+    <pre><code>
+      function GetWheels<w extends Vehicle>(veh: w): number {
+        return veh.drive();
+      }
+      
+      GetWheels(car);
+      GetWheels(bike);
+    </code></pre>
+    <ul>
+      <li class="car2"></li>
+      <li class="bicycle2"></li>
+    </ul>
+    <br>
+
+    <h3 id="generic-classes-title">7.3 Generic classes</h3>
+    <pre><code>
+      class GenericTypeValue<T> {
+        add: (val1: T, val2: T) => T;
+      }
+
+      let newNumber = new GenericTypeValue<number>();
+
+      newNumber.add = function (x, y) {
+        return x + y;
+      }
+
+      let newString = new GenericTypeValue<string>();
+        
+      newString.add = function (x, y) {
+        return String(Number(x) + Number(y));
+      }
+        
+      console.log(`5 + 4 = ${newNumber.add(5, 4)}`)
+      console.log(`5 + 6 = ${newString.add("5", "6")}`)
+    </code></pre>
+    <ul id="generic-classes"></ul>
+    <br>
+
+    <h3 id="destructuring-title">8. Destructuring (multiple values in one line)</h3>
+    <pre><code>
+      let multiValues = { x: 1, y: 2, z: 3 };
+      let { x, y, z } = multiValues;
+
+      console.log(`${x + y + z}`);
+    </code></pre>
+    <ul id="destructuring"></ul>
+    <br>
+
+    <h3 id="switch-title">8.1 Switch values</h3>
+    <pre><code>
+      let multiValues = { x: 1, y: 2, z: 3 };
+      let { x, y, z } = multiValues;
+
+      [x, y, z] = [z, y, x];
+
+      console.log(`${x}${y}${z}`);
+    </code></pre>
+    <ul id="switch"></ul>
+
+    <button id="to-top">To Top</button>
+  </main>
+  <script src="main.js"></script>
+  <script src="lib/to-top.js"></script>
+  <script src="lib/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+
+</html>
