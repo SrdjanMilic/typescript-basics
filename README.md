@@ -1,6 +1,6 @@
 # TypeScript Basics
 
-Basic TypeScript code examples.  
+Web site with basic TypeScript code examples.  
 
 Note: The site code is dynamic, so you can use main.ts script for your own practice.  
 
